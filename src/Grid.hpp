@@ -17,6 +17,9 @@ namespace Source
 		int32 getGridSize() const;
 		Vector2 getStartPosition() const;
 		Vector2 getEndPosition() const;
+
+		void setStartPosition(Vector2 newPos);
+		void setEndPosition(Vector2 newPos);
 	private:
 		const bool isInMouseBounds(sf::Vector2i mousePosition, sf::Vector2f element, sf::Vector2f elementSize);
 		const sf::RectangleShape drawRectangle(sf::Vector2f position, sf::Vector2f size);

@@ -12,7 +12,7 @@ namespace Source
 	public:
 		explicit Window(sf::Vector2i windowSize, Colors appColors);
 		const void draw();
-
+		void updateArgs(Utils::AlgorithmFuncArgs newArgs);
 	private:
 		/* ImGui*/
 		void drawColorsSection();
@@ -22,6 +22,7 @@ namespace Source
 		void pollEvent();
 		void drawLoop();
 
+		const void refreshArgs();
 	private:
 		Colors m_AppColors;
 		Vector2 m_StartPosition = NEG_VECTOR2;
@@ -34,5 +35,8 @@ namespace Source
 		sf::Event m_WindowEvent;
 		PressedKeys m_PressedKeys;
 		bool m_ImGuiOpened = true;
+		bool m_PathFound = false;
+		bool m_DiagonalMove = false;
+		bool m_StartAlgorithm = false;
 	};
 }

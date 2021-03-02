@@ -55,6 +55,16 @@ Vector2 Source::Grid::getEndPosition() const
 	return this->m_EndPosition;
 }
 
+void Source::Grid::setStartPosition(Vector2 newPos)
+{
+	this->m_StartPosition = newPos;
+}
+
+void Source::Grid::setEndPosition(Vector2 newPos)
+{
+	this->m_EndPosition = newPos;
+}
+
 const bool Source::Grid::isInMouseBounds(sf::Vector2i mousePosition, sf::Vector2f element, sf::Vector2f elementSize)
 {
 	return  (mousePosition.x >= element.x) && 

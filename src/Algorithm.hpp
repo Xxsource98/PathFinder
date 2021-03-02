@@ -6,6 +6,17 @@ namespace Source
 {
     namespace Algorithm
     {
+        namespace Global
+        {
+            inline Utils::AlgorithmFuncArgs globArgs;
+            inline bool startAlgorithm = false;
+            inline bool doAnimation = true;
+            inline unsigned int animationDelay = 50;
+            inline bool showVisitedNodes = true;
+            inline sf::Color visitedNodeColor = sf::Color(95, 39, 205);
+            inline bool stopAnimation = false;
+        }
+
         inline std::vector<Vector2> reconstructPath(Node* currentNode, Node* startNode)
         {
             std::vector<Vector2> path;
@@ -15,7 +26,6 @@ namespace Source
                 path.push_back(currentNode->position);
             }
             path.pop_back();
-            std::reverse(path.begin(), path.end());
 
             return path;
         }
@@ -24,10 +34,13 @@ namespace Source
         {
             if (startPos == NEG_VECTOR2 || endPos == NEG_VECTOR2)
                 return std::vector<Vector2>();
-            
+
             Node* startNode = new Node(startPos);
             Node* endNode = new Node(endPos);
             std::set<Node*> openSet;
+
+            if (!openSet.empty())
+                openSet.clear();
 
             startNode->gCost = 0;
             startNode->fCost = diagonal ? Utils::diagonalDistance(startNode, endNode) : Utils::manhattanDistance(startNode, endNode);
@@ -37,6 +50,12 @@ namespace Source
             while (!openSet.empty())
             {
                 auto currentNode = *openSet.begin();
+
+                if (Global::stopAnimation)
+                {
+                    Global::stopAnimation = false;
+                    break;
+                }
 
                 if (currentNode->position == endNode->position)
                 {
@@ -51,6 +70,7 @@ namespace Source
                 auto neighbors = Utils::getNodeNeighbors(allNodes, gridSize, currentNode, diagonal);
                 for (auto neighbor : neighbors)
                 {
+
                     auto gCost = currentNode->gCost + (diagonal ? Utils::diagonalDistance(currentNode, neighbor) : Utils::manhattanDistance(currentNode, neighbor));
                     if (gCost < neighbor->gCost)
                     {
@@ -63,6 +83,11 @@ namespace Source
                             openSet.insert(neighbor);
                     }
                 }
+
+                if (Global::showVisitedNodes && (currentNode->position != startNode->position))
+                    currentNode->setColor(Algorithm::Global::visitedNodeColor);
+
+                Global::doAnimation ? sf::sleep(sf::milliseconds(Global::animationDelay)) : void();
             }
 
             return std::vector<Vector2>();

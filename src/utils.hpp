@@ -7,13 +7,24 @@ namespace Source
 {
 	namespace Utils
 	{
+		struct AlgorithmFuncArgs
+		{
+			std::vector<Node*> nodes;
+			int32 gridSize;
+			Vector2 startPos;
+			Vector2 endPos;
+			bool diagonalMove;
+			sf::Color traceColor;
+			bool failedToFind;
+		};
+
 		inline ImVec4 getColorAsImVec4(sf::Color sfColor)
 		{
 			ImVec4 color;
-			color.x = sfColor.r / 255;
-			color.y = sfColor.g / 255;
-			color.z = sfColor.b / 255;
-			color.w = sfColor.a / 255;
+			color.x = static_cast<float>(sfColor.r / 255.f);
+			color.y = static_cast<float>(sfColor.g / 255.f);
+			color.z = static_cast<float>(sfColor.b / 255.f);
+			color.w = static_cast<float>(sfColor.a / 255.f);
 			return color;
 		}
 
