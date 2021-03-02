@@ -88,7 +88,7 @@ const sf::RectangleShape Source::Grid::drawRectangle(sf::Vector2f position, sf::
 
 void Source::Grid::gridAction(Node* selectedNode, PressedKeys& keys, bool isImGuiOpened)
 {
-	if (keys.lShift)
+	if (keys.lCtrl)
 	{
 		if (this->m_StartPosition == NEG_VECTOR2 && selectedNode->position != this->m_EndPosition && !selectedNode->isWall)
 		{
@@ -103,11 +103,11 @@ void Source::Grid::gridAction(Node* selectedNode, PressedKeys& keys, bool isImGu
 				this->m_StartPosition = NEG_VECTOR2;
 			}
 		}
-		keys.lShift = false;
+		keys.lCtrl = false;
 		return;
 	}
 
-	if (keys.lCtrl)
+	if (keys.lShift)
 	{
 		if (this->m_EndPosition == NEG_VECTOR2 && selectedNode->position != this->m_StartPosition && !selectedNode->isWall)
 		{
@@ -122,7 +122,7 @@ void Source::Grid::gridAction(Node* selectedNode, PressedKeys& keys, bool isImGu
 				this->m_EndPosition = NEG_VECTOR2;
 			}
 		}
-		keys.lCtrl = false;
+		keys.lShift = false;
 		return;
 	}
 
