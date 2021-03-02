@@ -11,7 +11,7 @@ A* (pronounced "A-star") is a graph traversal and path search algorithm, which i
 You can test the file downloading it from here: [Download Link](https://github.com/Xxsource98/PathFinder/releases/tag/1.0)
 
 # Building a Project
-Clone my repostiory and open build32.bat and wait until everything get build successfully (if you want to change compiler, press right on the "build32.bat" and "Visual Studio 16 2019" to your compiler). You can open a project and build with your compiler, if everything is fine, go to your Debug/Release build folder and put here files: 
+Clone my repostiory (git clone ... --recurse-submodules) and open build32.bat and wait until everything get build successfully (if you want to change compiler, press right on the "build32.bat" and "Visual Studio 16 2019" to your compiler). You can open a project and build with your compiler, if everything is fine, go to your Debug/Release build folder and put here files: 
 ```
 FOR DEBUG BUILD:
 sfml-graphics-d-2.dll
